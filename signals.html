@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Signal vs Noise Worries</title>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html">Home</a>
+        <h1>Signal VS Noise Worries</h1>
+        <p>Simply put, a worry is a <em>signal</em> if you <strong>can do something about it</strong> to make the situation better or aleviate the worry. Otherwise if there is nothing to be done about it, then it is just a <strong>"noise worry"</strong> and should be put out of your mind like annoying static noise.<br><em>Try classifying your worries below!</em></p>
+
+
+        <div class="buttons">
+            <h4 class="counter" id="sC">Signal Count: </h4>
+            <h4 class="counter" id="nC">Noise Count: </h4>
+        </div>
+
+        <h3 id="wi1">Input Your Worry Below:</h3>
+        <input id="worryInput" class="worryInput" type="text" placeholder="I'm worried about...">
+        <div class="buttons">
+            <button onclick="changeTextSignal('wi1')">I Can do something about this.</button>
+            <button onclick="changeTextNoise('wi1')">There's nothing to be done about this.</button>
+        </div>
+        <div class="spacer"></div>
+        <button onclick="clearInput()">Clear Input Box</button>
+
+    </div>    
+
+    <script src="signalScript.js"></script>
+</body>
+</html>

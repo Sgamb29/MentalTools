@@ -42,3 +42,31 @@ textarea {
     width: 100%;
 
 }    
+
+@media (width <= 769px) {
+iframe {
+    width: 100%;
+}
+}
+
+
+@media (width <= 769px) {
+    .worryInput {
+        width: 100%;
+    }
+}
+
+@media (width > 769px) {
+    .worryInput {
+        width: 70%;
+    }
+}
+
+.worryInput {
+    margin-bottom: 15px;
+}
+
+.counter {
+    margin-left: 25px;
+    margin-right: 25px;
+}
