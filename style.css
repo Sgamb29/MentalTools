@@ -70,3 +70,12 @@ iframe {
     margin-left: 25px;
     margin-right: 25px;
 }
+
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    padding: 5px;
+}
