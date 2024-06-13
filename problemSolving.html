@@ -18,7 +18,12 @@
             <button onclick="backStep()">Back Step</button>
             <button onclick="nextStep()">Next Step</button>
         </div>
-        <textarea id="textInput" rows="30"></textarea>
+        <br>
+        <div class="buttons">
+            <button onclick="insertPromptText()">Insert Prompt Text</button>
+            <button id="resetBtn" onclick="resetText()">Clear Text</button>
+        </div>
+        <textarea id="textInput" spellcheck="false" rows="30"></textarea>
         
     </div>
     <script src="PSscript.js"></script>

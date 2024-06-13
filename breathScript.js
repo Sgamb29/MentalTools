@@ -1,10 +1,13 @@
 
-const timeOutput = document.getElementById("timeOutput");        
+const timeOutput = document.getElementById("timeOutput");     
+const totalAccTimeOutput = document.getElementById("totalTime");   
 
 let secCount = 1;
 let breathIn = true;
 let evenStarted = false;
 let totalSeconds = 0;
+
+let totalAccTime = 0;
 
 let intervalId = 0;
 
@@ -33,6 +36,9 @@ function startEvenBreathing() {
         }
         totalSeconds += 1;
 
+        totalAccTime += 1;
+        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
+
     }, 1000);
 
    
@@ -41,6 +47,20 @@ function startEvenBreathing() {
 
 
 
+}
+
+function getTimeString(sec) {
+    console.log(sec)
+    let mins = parseInt((sec / 60));
+    console.log(mins);
+    let seconds = (sec - mins * 60).toString();
+    if (parseInt(mins) < 10) {
+        mins = "0" + mins;
+    }
+    if (parseInt(seconds) < 10) {
+        seconds = "0" + seconds;
+    }
+    return mins + ":" + seconds;
 }
 
 
@@ -92,6 +112,12 @@ function startBoxBreathing() {
         }
         totalSeconds += 1;
 
+
+        totalAccTime += 1;
+        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
+
+        
+
     }, 1000);
 
    
@@ -132,6 +158,10 @@ function startFourSevenEight() {
             
         }
         totalSeconds += 1;
+
+
+        totalAccTime += 1;
+        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
 
     }, 1000);
 
