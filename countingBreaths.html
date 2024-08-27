@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Breathing Techniques</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <a href="index.html">Home</a>
+        <h1>Breath Couting To Help Ground Yourself</h1>
+        <p><strong>Simply click anywhere on the page to activate and then press space bar or the button on each exhale.</strong></p>
+        <p><em>Tip: Focus on relaxing tension and breathing from the belly instead of the upper body.</em></p>
+        <button onclick="endSession()">End Session</button>
+        <p id="totalTime">Total Session Time: 00:00</p>
+        <h2 id="countOutput">Breaths: <br>Time Between Breaths: </h2>
+        <button id="countButton" class="countButton" onclick="countBreath()"> [+] </button>
+    </div>
+    
+    <script src="breathCount.js"></script>
+</body>
+</html>

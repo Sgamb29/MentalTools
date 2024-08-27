@@ -15,7 +15,7 @@ let boxStarted = false;
 
 function startEvenBreathing() {
     
-    if (evenStarted || boxStarted) {
+    if (evenStarted || boxStarted || fourSevenStarted) {
         return;
     }
 
@@ -44,15 +44,14 @@ function startEvenBreathing() {
    
     
     evenStarted = true;
+    toggleButtonDeactivate();
 
 
 
 }
 
 function getTimeString(sec) {
-    console.log(sec)
     let mins = parseInt((sec / 60));
-    console.log(mins);
     let seconds = (sec - mins * 60).toString();
     if (parseInt(mins) < 10) {
         mins = "0" + mins;
@@ -81,6 +80,8 @@ function endSession() {
     sequenceStep = 0;
     currentFourSevenStep = 0;
 
+    toggleButtonDeactivate();
+
 }
 
 
@@ -88,7 +89,7 @@ function endSession() {
 
 function startBoxBreathing() {
 
-    if (boxStarted || evenStarted) {
+    if (boxStarted || evenStarted || fourSevenStarted) {
         return;
     }
 
@@ -123,6 +124,7 @@ function startBoxBreathing() {
    
     
     boxStarted = true;
+    toggleButtonDeactivate();
 
 
 
@@ -168,4 +170,14 @@ function startFourSevenEight() {
    
     
     fourSevenStarted = true;
+    toggleButtonDeactivate();
+}
+
+
+function toggleButtonDeactivate() {
+    const sessionButtons = document.getElementsByClassName("sessionButton");
+    const btnList = Array.from(sessionButtons);
+    btnList.forEach((btn) => {
+        btn.disabled = !btn.disabled;
+    })
 }
