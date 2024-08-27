@@ -10,7 +10,6 @@ let timeBetweenBreaths = 0;
 const countButton = document.getElementById("countButton");
 const countOutput = document.getElementById("countOutput");
 
-document.getElementById("container").style.textAlign = "center";
 
 document.addEventListener("keypress", (press) => {
     if (press.code == "Space" ) {
