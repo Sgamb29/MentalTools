@@ -2,9 +2,13 @@
 const timeOutput = document.getElementById("timeOutput");     
 const totalAccTimeOutput = document.getElementById("totalTime");   
 
+// secCount is used in all the breathing exercise functions.
 let secCount = 1;
+
 let breathIn = true;
+
 let evenStarted = false;
+
 let totalSeconds = 0;
 
 let totalAccTime = 0;
@@ -70,11 +74,16 @@ function endSession() {
     if (!evenStarted && !boxStarted && !fourSevenStarted) {
         return;
     }
+
     clearInterval(intervalId);
+
     evenStarted = false;
     boxStarted = false;
     fourSevenStarted = false;
+    breathIn = true;
+
     timeOutput.innerText = "Good Job For The " + totalSeconds.toString() + " Second Session!";
+
     totalSeconds = 0;
     secCount = 1;
     sequenceStep = 0;
@@ -103,7 +112,6 @@ function startBoxBreathing() {
         timeOutput.innerText = boxBreathingSteps[sequenceStep] + secCount.toString();
         
         if (secCount % 4 == 0) {
-            breathIn = !breathIn;
             secCount = 0;
             sequenceStep += 1;
             if (sequenceStep == boxBreathingSteps.length) {
