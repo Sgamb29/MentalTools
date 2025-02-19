@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 
 }
 
@@ -30,10 +31,8 @@ button {
 a {
     margin: 15px;
     padding: 10px;
-    padding-left: 60px;
-    padding-right: 60px;
     border: 1px solid black;
-
+    width: 80%;
     font-size: larger;
 }
 
@@ -81,7 +80,9 @@ iframe {
     width: 90%;
     border: 1px solid black;
     margin-bottom: 5px;
-    padding: 5px;
+    padding: 9px;
+    font-size: large;
+
 }
 
 
@@ -91,4 +92,29 @@ iframe {
     padding-left: 50px;
     padding-right: 50px;
     margin-bottom: 60px;
+}
+
+
+ol {
+    padding: 10px;
+    font-size: x-large;
+}
+
+li {
+    padding: 9px;
+    border: 1px solid black;
+    margin: 5px;
+    background-color: white;
+    border-radius: 25%;
+}
+
+.bigText {
+    font-size: larger;
+}
+
+.bigButton {
+    font-size: x-large;
+    border: solid 1px black;
+    background-color: white;
+    border-radius: 10%;
 }

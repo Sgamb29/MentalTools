@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tools and techniques for solving problems and calming the mind.">
+    <meta name="keywords" content="Breathing, Problem Solving, Worries, Calming Down">
     <link rel="stylesheet" href="style.css">
     <title>Tools and Techniques For Solving Problems And Calming The Mind</title>
 </head>
@@ -12,11 +14,25 @@
         <a href="problemSolving.html">Problem Solving Process</a>
         <a href="breathing.html">Breathing Techniques</a>
         <a href="mentalGym.html">Mental Gym: Perspective Shifting</a>
-        <a href="hypnoCalm.html">I'm At Home and Need To Calm Down</a>
+        <a href="reengage.html">Re-Engage Activities</a>
+        <a href="hypnoCalm.html">"I'm At Home and Need To Calm Down"</a>
         <a href="signals.html">Signal vs Noise Worries</a>
         <a href="countingBreaths.html">Breath Counting</a>
         <a href="journals.html">Journaling Ideas</a>
-        <a href="ScreenTime.html">Quality Screen Time vs Harmful Screen Time</a>
     </div>
+
+    <script>
+            // Traffic
+    const request = new Request("https://server.sgambapps.com/?site=mentalTools", {
+        method: "POST",
+    });
+    fetch(request)
+    .then(res => {
+        if (res.ok) {
+        console.log("visit counted");
+        }
+    })
+    .catch(err => console.log(err));
+    </script>
 </body>
 </html>
