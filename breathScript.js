@@ -3,55 +3,44 @@ const timeOutput = document.getElementById("timeOutput");
 const totalAccTimeOutput = document.getElementById("totalTime");   
 
 // secCount is used in all the breathing exercise functions.
+// totalAccTime (total accumulated time for session time str)
 let secCount = 1;
-
 let breathIn = true;
-
-let evenStarted = false;
-
-let totalSeconds = 0;
-
 let totalAccTime = 0;
-
 let intervalId = 0;
 
-let boxStarted = false;
+function isFreshStart() {
+    return intervalId === 0;
+}
+
+function updateSessionTimeStr(time) {
+    totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(time); 
+}
 
 function startEvenBreathing() {
-    
-    if (evenStarted || boxStarted || fourSevenStarted) {
+    if (!isFreshStart()) {
         return;
     }
-
-
-    timeOutput.innerText = "Breathe In... " + secCount.toString();
-
+    timeOutput.innerText = "Inhale... " + secCount.toString();
     
     intervalId = setInterval(() => {
         secCount += 1;        
         if (breathIn) {
-            timeOutput.innerText = "Breathe In... " + secCount.toString();
+            timeOutput.innerText = "Inhale... " + secCount.toString();
         } else {
-            timeOutput.innerText = "Breathe Out... " + secCount.toString();
+            timeOutput.innerText = "Exhale... " + secCount.toString();
         }
         if (secCount % 4 == 0) {
             breathIn = !breathIn;
             secCount = 0;
         }
-        totalSeconds += 1;
-
         totalAccTime += 1;
-        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
+        updateSessionTimeStr(totalAccTime);
 
     }, 1000);
 
-   
-    
     evenStarted = true;
     toggleButtonDeactivate();
-
-
-
 }
 
 function getTimeString(sec) {
@@ -66,48 +55,36 @@ function getTimeString(sec) {
     return mins + ":" + seconds;
 }
 
-
-const boxBreathingSteps = ["Breathe In...", "Gentle Hold...", "Breathe Out...", "Gentle Hold..."];
+const boxBreathingSteps = ["Inhale...", "Gentle Hold...", "Exhale...", "Gentle Hold..."];
 let sequenceStep = 0;
 
 function endSession() {
-    if (!evenStarted && !boxStarted && !fourSevenStarted) {
+    if (isFreshStart()) {
         return;
     }
-
     clearInterval(intervalId);
-
-    evenStarted = false;
-    boxStarted = false;
-    fourSevenStarted = false;
     breathIn = true;
-
-    timeOutput.innerText = "Good Job For The " + totalSeconds.toString() + " Second Session!";
-
-    totalSeconds = 0;
+    timeOutput.innerText = "Session complete, good job!";
     secCount = 1;
     sequenceStep = 0;
     currentFourSevenStep = 0;
-
+    intervalId = 0;
     toggleButtonDeactivate();
-
 }
 
-
-
+function resetSessionTime() {
+    totalAccTime = 0;
+    updateSessionTimeStr(totalAccTime);
+}
 
 function startBoxBreathing() {
-
-    if (boxStarted || evenStarted || fourSevenStarted) {
+    if (!isFreshStart()) {
         return;
     }
-
     timeOutput.innerText = boxBreathingSteps[sequenceStep] + secCount.toString();
-
     
     intervalId = setInterval(() => {
         secCount += 1;
-        
         
         timeOutput.innerText = boxBreathingSteps[sequenceStep] + secCount.toString();
         
@@ -117,44 +94,25 @@ function startBoxBreathing() {
             if (sequenceStep == boxBreathingSteps.length) {
                 sequenceStep = 0;
             }
-            
         }
-        totalSeconds += 1;
-
-
         totalAccTime += 1;
-        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
-
-        
-
+        updateSessionTimeStr(totalAccTime);
     }, 1000);
 
-   
-    
-    boxStarted = true;
     toggleButtonDeactivate();
-
-
-
 }
 
-const fourSevenEightSteps = ["Breathe In...", "Gentle Hold...", "Breathe Out.."];
+const fourSevenEightSteps = ["Inhale...", "Gentle Hold...", "Exhale.."];
 const steps = [4, 7, 8];
-let fourSevenStarted = false;
 let currentFourSevenStep = 0;
 
 function startFourSevenEight() {
-
-    if (boxStarted || evenStarted || fourSevenStarted) {
+    if (!isFreshStart()) {
         return;
     }
-
     timeOutput.innerText = fourSevenEightSteps[currentFourSevenStep] + secCount.toString();
-
-    
     intervalId = setInterval(() => {
         secCount += 1;
-        
         
         timeOutput.innerText = fourSevenEightSteps[currentFourSevenStep] + secCount.toString();
         
@@ -167,20 +125,71 @@ function startFourSevenEight() {
             }
             
         }
-        totalSeconds += 1;
-
-
         totalAccTime += 1;
-        totalAccTimeOutput.innerText = "Total Session Time: " + getTimeString(totalAccTime); 
+        updateSessionTimeStr(totalAccTime);
 
     }, 1000);
-
-   
     
-    fourSevenStarted = true;
     toggleButtonDeactivate();
 }
 
+function startStopwatch() {
+    updateSessionTimeStr(totalAccTime);
+    intervalId = setInterval(() => {
+        totalAccTime += 1;
+        updateSessionTimeStr(totalAccTime);
+    }, 1000);
+
+    toggleButtonDeactivate();
+}
+
+function startCustom() {
+    const iInput = document.getElementById("inhaleInput");
+    const h1Input = document.getElementById("holdOneInput");
+    const eInput = document.getElementById("exhaleInput");
+    const h2Input = document.getElementById("holdTwoInput");
+    let inhale, exhale, holdOne, holdTwo;
+
+    const numChecker = new RegExp("^[0-9]{1,2}$");
+    if (!numChecker.test(iInput.value) || !numChecker.test(h1Input.value) || !numChecker.test(eInput.value) ||  !numChecker.test(h2Input.value)) {
+        timeOutput.innerText = "Custom setup error. Check numbers.";
+        return;
+    }
+
+    try {
+        inhale = parseInt(iInput.value);
+        holdOne = parseInt(h1Input.value);
+        exhale = parseInt(eInput.value);
+        holdTwo = parseInt(h2Input.value);
+    } catch {
+        timeOutput.innerText = "Custom setup error. Check numbers.";
+        return;
+    }
+
+    const steps = ["Inhale", "Hold", "Exhale", "Hold"];
+    const counts = [inhale, holdOne, exhale, holdTwo];
+
+    let index = 0;
+    let count = 1;
+    timeOutput.innerText = steps[index] + " " + count;
+    intervalId = setInterval(() => {
+        count += 1;
+        if (count >= counts[index] + 1) {
+            index += 1;
+            count = 1;
+            if (counts[index] <= 0) {
+                index += 1;
+            }
+            if (index >= steps.length) {
+                index = 0;
+            }
+        }
+        totalAccTime += 1;
+        timeOutput.innerText = steps[index] + " " + count.toString();
+        updateSessionTimeStr(totalAccTime);
+    }, 1000);
+    toggleButtonDeactivate();
+}
 
 function toggleButtonDeactivate() {
     const sessionButtons = document.getElementsByClassName("sessionButton");

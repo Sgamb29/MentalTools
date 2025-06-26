@@ -22,6 +22,8 @@ button {
     margin-right: 15px;
 
     font-size: larger;
+    border: 1px solid black;
+    background-color: white;
 }
 
 .spacer {
@@ -117,4 +119,10 @@ li {
     border: solid 1px black;
     background-color: white;
     border-radius: 10%;
+}
+
+.breathInput {
+    font-size: medium;
+    text-align: center;
+    margin: 10px;
 }

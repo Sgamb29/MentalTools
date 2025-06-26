@@ -10,8 +10,8 @@
     <div class="container">
         <a href="index.html">Home</a>
         <h1>Breathing Techniques To Self Regulate</h1>
-        <p><em>Tip: Focus on relaxing tension and breathing from the belly.</em></p>
-        <p id="totalTime"><strong>Total Session Time: </strong></p>
+        <p><em>Tip: Focus on watching tension and breathing from the belly.<br> Tip: If anxious doing breath techniques with the countdown, go by feel instead and use the stopwatch to track session time. (ex: Do box breathing however is comfortable for you)</em></p>
+        <p id="totalTime"><strong>Total Session Time: </strong></p><button class="sessionButton" onclick="resetSessionTime()">Reset</button>
         <h2 id="timeOutput"></h2>
 
         <div class="buttons">
@@ -25,6 +25,15 @@
             <button class="sessionButton" onclick="startBoxBreathing()">Start Box Breathing</button>
             <button class="sessionButton" onclick="startFourSevenEight()">Start Four Seven Eight Breathing</button>
         </div>
+        <div class="spacer">
+
+        </div>
+        <div class="buttons">
+            <button class="sessionButton" onclick="startStopwatch()">Stopwatch</button>
+            <button class="sessionButton" onclick="startCustom()">Custom</button>
+        </div>
+        <p><em>Custom Setup:<br>Inhale:<input class="breathInput" id="inhaleInput" type="number" value="5"> <br> Hold:<input class="breathInput" id="holdOneInput" type="number" value="0">
+        <br> Exhale:<input class="breathInput" id="exhaleInput" type="number" value="5"></em><br>Hold:<input class="breathInput" id="holdTwoInput" type="number" value="0"></p>
     </div>
     
     <script src="breathScript.js"></script>
