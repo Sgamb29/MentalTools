@@ -23,11 +23,16 @@
 
     <script>
     const toFetch = window.location.href.split(":")[0] === "https";
+    const fetchKey = "lastFetch";
+    const lastFetch = localStorage.getItem(fetchKey);
+    const dt = new Date();
+    const day = dt.getDay();
+    const diffDay = lastFetch !== day.toString();
             // Traffic
     const request = new Request("https://server.sgambapps.com/?site=mentalTools", {
         method: "POST",
     });
-    if (toFetch) {
+    if (toFetch && diffDay) {
         fetch(request)
         .then(res => {
             if (res.ok) {
@@ -37,6 +42,7 @@
         .catch(err => console.log("visit not counted"));
 
         }
+        localStorage.setItem(fetchKey, day.toString());
     </script>
 </body>
 </html>
