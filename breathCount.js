@@ -17,8 +17,6 @@ document.addEventListener("keypress", (press) => {
     }
 });
 
-let dotsCount = 0;
-
 function countBreath() {
     if (!sessionStarted) {
         intervalId = setInterval(() => {
@@ -27,42 +25,18 @@ function countBreath() {
             document.getElementById("totalTime").innerText = "Total session time: " + getTimeString(sessionSeconds);
 
         }, 1000);
-
         sessionStarted = true;
     }
 
     breathsCount += 1;
     let timeBetweenString = "\nTime Between Breaths: " + timeBetweenBreaths.toString();
-    
-
-    let incrementingDots = ".";
-    switch (dotsCount) {
-        case 0 :
-            incrementingDots = ".";
-            break;
-        case 1 :
-            incrementingDots = "..";
-            break;
-        case 2 :
-            incrementingDots = "...";
-            break;
-    }
-    dotsCount += 1;
-    if (dotsCount == 3) {
-        dotsCount = 0;
-    }
-    
-
-    countOutput.innerText = "Breaths: " + breathsCount.toString() + timeBetweenString + " seconds" + incrementingDots;
+    countOutput.innerText = "Breaths: " + breathsCount.toString() + timeBetweenString + " seconds";
     countButton.style.backgroundColor = "green";
     timeBetweenBreaths = 0;
 
     setTimeout(() => {
         countButton.style.backgroundColor = "pink";
     }, 200);
-    
-
-    
 }
 
 function endSession() {
@@ -71,6 +45,9 @@ function endSession() {
     }
     clearInterval(intervalId);
     sessionStarted = false;
+    breathsCount = 0;
+    sessionSeconds = 0;
+    timeBetweenBreaths = 0;
     countOutput.innerText = countOutput.innerText + "\nGreat job for this session!"
     
 }
