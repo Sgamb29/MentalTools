@@ -29,8 +29,8 @@ function countBreath() {
     }
 
     breathsCount += 1;
-    let timeBetweenString = "\nTime Between Breaths: " + timeBetweenBreaths.toString();
-    countOutput.innerText = "Breaths: " + breathsCount.toString() + timeBetweenString + " seconds";
+    let timeBetweenString = "\nBreath seconds: " + timeBetweenBreaths.toString();
+    countOutput.innerText = "Breaths: " + breathsCount.toString() + timeBetweenString;
     countButton.style.backgroundColor = "green";
     timeBetweenBreaths = 0;
 
